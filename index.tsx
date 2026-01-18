@@ -10,7 +10,7 @@ import {
   Shield, Gem, Trophy 
 } from 'lucide-react';
 
-// --- CONFIGURAÇÕES E CONSTANTES ---
+// Configuração Global
 const CHECKOUT_URL = "https://pay.kiwify.com.br/yGLcOtO";
 
 const PHASES = [
@@ -29,8 +29,6 @@ const TESTIMONIALS = [
   { id: 2, name: "Beatriz Helena", result: "FOCO TOTAL", comment: "Pela primeira vez não dependo de estar animada para ir treinar.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" },
   { id: 3, name: "André Luiz", result: "CONSTÂNCIA", comment: "O sistema de fases me ajudou a não desistir nos dias difíceis.", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200" }
 ];
-
-// --- COMPONENTES ---
 
 const Hero = () => (
   <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -202,11 +200,15 @@ const OfferDetails = () => (
 const StickyCTA = () => {
   const [show, setShow] = useState(false);
   useEffect(() => {
-    const handleScroll = () => setShow(window.scrollY > 800);
+    const handleScroll = () => {
+      setShow(window.scrollY > 800);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  
   if (!show) return null;
+  
   return (
     <div className="fixed bottom-8 left-0 w-full z-50 px-4 flex justify-center animate-bounce-subtle">
       <a href={CHECKOUT_URL} className="w-full max-w-2xl py-6 gradient-bg text-slate-950 font-black text-2xl rounded-2xl shadow-3xl text-center uppercase tracking-tighter italic">
@@ -251,7 +253,6 @@ const App = () => {
   );
 };
 
-// --- RENDERIZAÇÃO ---
 const rootElement = document.getElementById('root');
 if (rootElement) {
   createRoot(rootElement).render(<App />);
