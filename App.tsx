@@ -10,10 +10,10 @@ import Guarantee from './components/Guarantee';
 import Footer from './components/Footer';
 import StickyCTA from './components/StickyCTA';
 
-// Componente principal que organiza as seções da landing page.
+// Main Application entry component
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50 selection:bg-emerald-500/30">
+    <div className="min-h-screen selection:bg-emerald-500/30">
       <Hero />
       <PainSection />
       <ScienceSection />

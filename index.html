@@ -5,16 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Método 66 Dias - Consistência na Academia</title>
-    
-    <!-- Bibliotecas Necessárias -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- Fontes Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
-
     <style>
         :root {
             --emerald-500: #10b981;
@@ -28,253 +22,44 @@
             scroll-behavior: smooth;
         }
         h1, h2, h3, .font-montserrat { font-family: 'Montserrat', sans-serif; }
-        
         .glass {
             background: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        
         .gradient-text {
             background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
         .gradient-bg {
             background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
         }
-
-        .btn-shadow {
-            box-shadow: 0 20px 50px -10px rgba(16, 185, 129, 0.5);
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
-
-        .hidden-cta {
-            opacity: 0;
-            transform: translateY(100px);
-            pointer-events: none;
-            transition: all 0.5s ease;
-        }
-
-        .show-cta {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
+        .animate-bounce-subtle {
+            animation: bounce-subtle 2s infinite ease-in-out;
         }
     </style>
-<script type="importmap">
+    <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "recharts": "https://esm.sh/recharts@2.12.7?external=react,react-dom",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0?external=react,react-dom",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "recharts": "https://esm.sh/recharts@^3.6.0"
+    "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
 </head>
 <body>
-
-    <!-- HERO SECTION -->
-    <section class="relative min-h-screen flex items-center justify-center pt-20 pb-32 overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1920" 
-                 class="w-full h-full object-cover opacity-30" alt="Academia">
-            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-slate-950 to-slate-950"></div>
-        </div>
-        
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <div class="inline-block px-5 py-2 mb-8 text-xs font-bold tracking-widest text-emerald-400 uppercase glass rounded-full border border-emerald-500/20">
-                ⚡️ MÉTODO CIENTIFICAMENTE COMPROVADO
-            </div>
-            
-            <h1 class="text-5xl md:text-7xl lg:text-9xl font-black mb-8 leading-[0.9] tracking-tighter uppercase">
-                NUNCA MAIS <br><span class="gradient-text italic">DESISTA</span> DA <br>ACADEMIA.
-            </h1>
-            
-            <p class="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-                Transforme o treino em um hábito automático em 66 dias e conquiste o corpo que você sempre quis, sem depender de motivação passageira.
-            </p>
-            
-            <a href="https://pay.kiwify.com.br/yGLcOtO" 
-               class="inline-block group relative px-12 py-6 gradient-bg text-slate-950 font-black text-2xl rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 btn-shadow uppercase tracking-tighter">
-                QUERO MEU ACESSO AGORA
-            </a>
-            
-            <div class="mt-8 flex items-center justify-center gap-4 text-slate-500 text-sm font-bold uppercase tracking-widest">
-                ⭐ +15.420 pessoas usando o método
-            </div>
-        </div>
-    </section>
-
-    <!-- PAIN POINTS -->
-    <section class="py-24 bg-slate-900/40">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-5xl font-black mb-16 text-center uppercase tracking-tighter italic text-red-500">POR QUE VOCÊ SEMPRE FALHA?</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass p-10 rounded-3xl border-slate-800 hover:border-emerald-500/30 transition-all group">
-                    <div class="text-5xl mb-6 group-hover:scale-110 transition-transform">🔄</div>
-                    <h3 class="text-2xl font-bold mb-4 uppercase">Ciclo da Desistência</h3>
-                    <p class="text-slate-400 leading-relaxed font-light">Você começa segunda motivado e para na quinta. A motivação acaba e você volta à estaca zero.</p>
-                </div>
-                <div class="glass p-10 rounded-3xl border-slate-800 hover:border-emerald-500/30 transition-all group">
-                    <div class="text-5xl mb-6 group-hover:scale-110 transition-transform">⛓️</div>
-                    <h3 class="text-2xl font-bold mb-4 uppercase">Escravo da Emoção</h3>
-                    <p class="text-slate-400 leading-relaxed font-light">Se o dia foi ruim ou choveu, você não vai treinar. Sua saúde depende do seu humor.</p>
-                </div>
-                <div class="glass p-10 rounded-3xl border-slate-800 hover:border-emerald-500/30 transition-all group">
-                    <div class="text-5xl mb-6 group-hover:scale-110 transition-transform">📉</div>
-                    <h3 class="text-2xl font-bold mb-4 uppercase">Falta de Identidade</h3>
-                    <p class="text-slate-400 leading-relaxed font-light">Você se vê como alguém que tenta, não como um atleta. O hábito nunca se torna parte de quem você é.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SCIENCE SECTION -->
-    <section class="py-24 bg-slate-950">
-        <div class="container mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-20 items-center">
-                <div>
-                    <h2 class="text-4xl md:text-6xl font-black mb-8 tracking-tighter uppercase leading-tight">A CIÊNCIA DOS <br><span class="text-emerald-500 italic">66 DIAS</span></h2>
-                    <p class="text-slate-400 text-lg mb-8 leading-relaxed">
-                        A University College London provou: leva 66 dias para o cérebro selar um hábito. Nosso método foca nas 3 fases dessa transição biológica para garantir que você nunca mais pare.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-3 font-bold text-slate-200 uppercase text-xs tracking-widest">
-                            <div class="w-6 h-6 rounded-full gradient-bg flex items-center justify-center text-slate-950 text-[10px] font-black italic">✓</div>
-                            Fase 1: Destruição do sedentarismo
-                        </div>
-                        <div class="flex items-center gap-3 font-bold text-slate-200 uppercase text-xs tracking-widest">
-                            <div class="w-6 h-6 rounded-full gradient-bg flex items-center justify-center text-slate-950 text-[10px] font-black italic">✓</div>
-                            Fase 2: Instalação da nova rotina
-                        </div>
-                        <div class="flex items-center gap-3 font-bold text-slate-200 uppercase text-xs tracking-widest">
-                            <div class="w-6 h-6 rounded-full gradient-bg flex items-center justify-center text-slate-950 text-[10px] font-black italic">✓</div>
-                            Fase 3: Integração com sua identidade
-                        </div>
-                    </div>
-                </div>
-                <div class="glass p-8 rounded-[2.5rem] relative min-h-[400px]">
-                    <canvas id="scienceChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- OFFER SECTION -->
-    <section id="offer" class="py-32">
-        <div class="container mx-auto px-6 max-w-4xl">
-            <div class="glass rounded-[4rem] border-2 border-emerald-500/20 overflow-hidden shadow-2xl">
-                <div class="gradient-bg py-12 text-center text-slate-950">
-                    <h2 class="text-4xl md:text-5xl font-black tracking-tighter uppercase leading-none italic">OFERTA DE LANÇAMENTO</h2>
-                    <p class="font-bold opacity-70 mt-2 uppercase text-sm tracking-widest">Acesso Imediato e Vitalício</p>
-                </div>
-                <div class="p-10 md:p-20 text-center">
-                    <div class="grid gap-4 mb-12 text-left max-w-sm mx-auto">
-                        <div class="flex items-center gap-4 text-lg">
-                            <span class="text-emerald-500">⚡️</span>
-                            <span class="text-slate-200 font-medium">E-book Método 66 Dias Completo</span>
-                        </div>
-                        <div class="flex items-center gap-4 text-lg">
-                            <span class="text-emerald-500">⚡️</span>
-                            <span class="text-slate-200 font-medium">Checklist Diário de Consistência</span>
-                        </div>
-                        <div class="flex items-center gap-4 text-lg">
-                            <span class="text-emerald-500">⚡️</span>
-                            <span class="text-slate-200 font-medium">Guia de Gestão de Motivação</span>
-                        </div>
-                        <div class="flex items-center gap-4 text-lg">
-                            <span class="text-emerald-500">⚡️</span>
-                            <span class="text-slate-200 font-medium">Protocolo Antifragilidade</span>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-12">
-                        <p class="text-slate-500 line-through text-2xl font-bold mb-1">De R$ 97,00</p>
-                        <div class="flex items-center justify-center gap-3">
-                            <span class="text-2xl font-bold text-emerald-400">Por apenas</span>
-                            <span class="text-8xl md:text-9xl font-black gradient-text tracking-tighter leading-none">9,90</span>
-                        </div>
-                    </div>
-                    
-                    <a href="https://pay.kiwify.com.br/yGLcOtO" 
-                       class="block w-full py-8 gradient-bg text-slate-950 font-black text-3xl rounded-[2rem] hover:scale-105 transition-all active:scale-95 btn-shadow uppercase tracking-tighter text-center">
-                        QUERO MEU ACESSO AGORA
-                    </a>
-                    
-                    <div class="mt-10 flex flex-col items-center gap-6">
-                        <div class="flex items-center gap-2 text-slate-500 text-xs font-bold uppercase tracking-widest">
-                            🔒 Compra 100% Segura • Entrega Imediata
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="py-20 text-center text-slate-700 text-[10px] border-t border-slate-900 px-6 uppercase tracking-widest font-bold">
-        <p class="max-w-xl mx-auto mb-4 italic opacity-50">
-            Este site não é afiliado ao Facebook ou Google. Todos os resultados dependem da dedicação do aluno.
-        </p>
-        <p>&copy; <span id="year"></span> Método 66 Dias - Todos os direitos reservados.</p>
-    </footer>
-
-    <!-- STICKY CTA -->
-    <div id="stickyCTA" class="fixed bottom-0 left-0 w-full z-[100] px-4 pb-8 flex justify-center hidden-cta">
-        <a href="https://pay.kiwify.com.br/yGLcOtO" 
-           class="w-full max-w-xl py-6 gradient-bg text-slate-950 font-black rounded-3xl shadow-3xl flex items-center justify-center gap-4 transition-transform active:scale-95 text-xl md:text-2xl uppercase tracking-tighter italic text-center">
-            GARANTIR ACESSO - R$ 9,90
-        </a>
-    </div>
-
-    <!-- SCRIPTS VANILLA -->
-    <script>
-        // 1. Atualizar Ano no Footer
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // 2. Lógica do Sticky CTA (Botão flutuante)
-        const stickyCTA = document.getElementById('stickyCTA');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 800) {
-                stickyCTA.classList.add('show-cta');
-            } else {
-                stickyCTA.classList.remove('show-cta');
-            }
-        });
-
-        // 3. Gráfico da Ciência (Chart.js)
-        const ctx = document.getElementById('scienceChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['0', '15', '30', '45', '66'],
-                datasets: [{
-                    label: 'Nível de Automaticidade',
-                    data: [10, 25, 45, 75, 95],
-                    borderColor: '#10b981',
-                    borderWidth: 4,
-                    pointBackgroundColor: '#10b981',
-                    pointRadius: 6,
-                    tension: 0.4,
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: { display: false },
-                    y: { display: false }
-                },
-                plugins: {
-                    legend: { display: false },
-                    tooltip: { enabled: false }
-                }
-            }
-        });
-    </script>
+    <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
 </body>
 </html>
