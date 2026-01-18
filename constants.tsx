@@ -1,27 +1,28 @@
 
-import React from 'react';
 import { Phase, Testimonial } from './types';
+
+// Constantes utilizadas para alimentar os componentes da landing page do Método 66 Dias.
 
 export const PHASES: Phase[] = [
   {
     id: 1,
-    title: "A Fase da Destruição",
-    days: "Dias 1 - 22",
-    description: "O momento mais crítico. Aqui você está destruindo o antigo hábito de procrastinar e o sedentarismo. O foco é apenas comparecer.",
+    title: "A Fase do Caos",
+    days: "DIAS 1 - 22",
+    description: "A etapa de destruição. É aqui que você luta contra o 'eu' preguiçoso e quebra os padrões de desistência instalados no seu cérebro.",
     icon: "🔥"
   },
   {
     id: 2,
-    title: "A Fase da Instalação",
-    days: "Dias 23 - 44",
-    description: "Seu cérebro começa a aceitar a nova rotina. O esforço consciente diminui e a técnica começa a se tornar automática.",
-    icon: "⚙️"
+    title: "A Fase da Resistência",
+    days: "DIAS 23 - 44",
+    description: "A etapa de construção. Os resultados começam a aparecer, mas o cérebro ainda tenta economizar energia. É o teste final da sua nova identidade.",
+    icon: "🛡️"
   },
   {
     id: 3,
-    title: "A Fase da Integração",
-    days: "Dias 45 - 66",
-    description: "O hábito está selado. Ir à academia se torna parte da sua identidade, como escovar os dentes ou tomar banho.",
+    title: "A Fase da Convergência",
+    days: "DIAS 45 - 66",
+    description: "A etapa de selagem. O comportamento cruza o ponto de inflexão e se torna automático. Você não precisa mais de motivação para ir treinar.",
     icon: "💎"
   }
 ];
@@ -29,31 +30,32 @@ export const PHASES: Phase[] = [
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: 1,
-    name: "Ricardo Silva",
-    comment: "Eu sempre desistia no primeiro mês. Com o Método 66 Dias, finalmente entendi que o problema não era minha vontade, mas o sistema que eu usava.",
-    result: "Treinando há 5 meses sem falhar",
-    image: "https://picsum.photos/id/1012/100/100"
+    name: "Ricardo Santos",
+    result: "-14KG EM 70 DIAS",
+    comment: "Eu sempre fui o 'atleta de janeiro'. Começava e parava. Com o Método 66 Dias, finalmente entendi como o hábito funciona. Hoje o treino é a melhor parte do meu dia.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200"
   },
   {
     id: 2,
-    name: "Mariana Costa",
-    comment: "O checklist diário mudou o jogo. Parar de depender de motivação foi a melhor coisa que fiz pela minha saúde.",
-    result: "-12kg e rotina inabalável",
-    image: "https://picsum.photos/id/1027/100/100"
+    name: "Beatriz Helena",
+    result: "CONSTÂNCIA INABALÁVEL",
+    comment: "Pela primeira vez na vida, não dependo de estar animada para ir à academia. O método me ensinou a criar uma rotina automática. É libertador!",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200"
   },
   {
     id: 3,
-    name: "Lucas Almeida",
-    comment: "O protocolo antifragilidade me salvou quando tive uma semana difícil no trabalho. Voltei pro ritmo no dia seguinte.",
-    result: "Consistência de ferro",
-    image: "https://picsum.photos/id/1005/100/100"
+    name: "André Luiz",
+    result: "FOCO TOTAL",
+    comment: "O que mudou não foi só o meu corpo, mas minha mentalidade. O sistema de fases me ajudou a não desistir nos dias difíceis, que eram quando eu sempre falhava.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200"
   }
 ];
 
-export const FEATURES = [
-  "Protocolo de 66 Dias Passo a Passo",
-  "Plano de Ação Diário (Checklist)",
-  "Guia de Gestão de Motivação",
-  "Acesso Vitalício",
-  "Protocolo Antifragilidade (O que fazer quando falhar)"
+export const FEATURES: string[] = [
+  "O Guia Mestre: Método 66 Dias (E-book)",
+  "Planner de Hábitos de Alta Performance (PDF)",
+  "Checklist Diário de Evolução",
+  "Guia de Nutrição Básica para Iniciantes",
+  "Manual: Como vencer a preguiça em 5 minutos",
+  "Acesso Vitalício e Atualizações Gratuitas"
 ];
