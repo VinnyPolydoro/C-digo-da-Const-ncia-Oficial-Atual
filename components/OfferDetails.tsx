@@ -3,6 +3,10 @@ import React from 'react';
 import { FEATURES } from '../constants';
 
 const OfferDetails: React.FC = () => {
+  const handlePurchase = () => {
+    window.location.href = 'https://pay.kiwify.com.br/yGLcOtO';
+  };
+
   return (
     <section id="offer" className="py-24 bg-slate-900/50">
       <div className="container mx-auto px-6 max-w-4xl">
@@ -31,10 +35,13 @@ const OfferDetails: React.FC = () => {
                   <span className="text-2xl font-bold text-emerald-400">Por apenas R$</span>
                   <span className="text-8xl font-black gradient-text">9,90</span>
                 </div>
-                <p className="text-slate-400 mt-2">Pagamento único. Sem mensalidades.</p>
+                <p className="text-slate-400 mt-2 font-medium">Pagamento único. Sem mensalidades.</p>
               </div>
               
-              <button className="w-full py-6 gradient-bg text-slate-950 font-black text-2xl rounded-2xl hover:scale-[1.02] transition-transform shadow-2xl shadow-emerald-500/30 active:scale-95 mb-4">
+              <button 
+                onClick={handlePurchase}
+                className="w-full py-6 gradient-bg text-slate-950 font-black text-2xl rounded-2xl hover:scale-[1.02] transition-transform shadow-2xl shadow-emerald-500/30 active:scale-95 mb-4"
+              >
                 QUERO MEU ACESSO AGORA
               </button>
               

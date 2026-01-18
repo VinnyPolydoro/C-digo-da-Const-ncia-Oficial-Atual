@@ -1,56 +1,177 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Método 66 Dias - Consistência na Academia</title>
+    
+    <!-- Scripts de Terceiros -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/recharts/umd/Recharts.js"></script>
+    
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
     <style>
-      body {
-        font-family: 'Inter', sans-serif;
-        background-color: #020617; /* slate-950 */
-        color: #f8fafc; /* slate-50 */
-      }
-      h1, h2, h3 {
-        font-family: 'Montserrat', sans-serif;
-      }
-      .glass {
-        background: rgba(15, 23, 42, 0.7);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      .gradient-text {
-        background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      .gradient-bg {
-        background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
-      }
-      .gradient-border {
-        border: 2px solid transparent;
-        background-image: linear-gradient(#020617, #020617), linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
-        background-origin: border-box;
-        background-clip: content-box, border-box;
-      }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
+        .glass {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+        }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.02); opacity: 0.9; }
+        }
+        .animate-pulse-soft { animation: pulse-soft 2s infinite ease-in-out; }
     </style>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
     "recharts": "https://esm.sh/recharts@^3.6.0"
   }
 }
 </script>
 </head>
-  <body>
+<body>
     <div id="root"></div>
-  </body>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } = Recharts;
+
+        const CHECKOUT_URL = "https://pay.kiwify.com.br/yGLcOtO";
+
+        // --- Componentes ---
+
+        const Hero = () => (
+            <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1920" className="w-full h-full object-cover opacity-40" alt="Academia" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent"></div>
+                </div>
+                <div className="container mx-auto px-6 relative z-10 text-center">
+                    <div className="inline-block px-4 py-1.5 mb-6 text-sm font-semibold tracking-wider text-emerald-400 uppercase glass rounded-full border border-emerald-500/30">Baseado na Ciência da Formação de Hábitos</div>
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight tracking-tight">NUNCA MAIS <span className="gradient-text">FALTE</span> À ACADEMIA.</h1>
+                    <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed font-light">Transforme o treino em um hábito automático em apenas 66 dias, sem depender de motivação passageira.</p>
+                    <button onClick={() => window.location.href = CHECKOUT_URL} className="px-10 py-5 gradient-bg text-slate-950 font-bold text-xl rounded-xl hover:scale-105 transition-transform shadow-2xl shadow-emerald-500/20 active:scale-95">QUERO SER CONSISTENTE AGORA</button>
+                </div>
+            </section>
+        );
+
+        const ScienceSection = () => {
+            const data = [
+                { day: 0, automaticity: 10 }, { day: 10, automaticity: 25 }, { day: 22, automaticity: 45 },
+                { day: 33, automaticity: 65 }, { day: 44, automaticity: 80 }, { day: 66, automaticity: 95 }
+            ];
+            return (
+                <section className="py-24 container mx-auto px-6">
+                    <div className="flex flex-col lg:flex-row gap-16 items-center">
+                        <div className="lg:w-1/2">
+                            <h2 className="text-3xl md:text-5xl font-black mb-8">A CIÊNCIA DOS <span className="gradient-text">66 DIAS</span></h2>
+                            <p className="text-slate-300 text-lg mb-6">Estudos mostram que 66 dias é o tempo médio para que um novo comportamento se torne automático no cérebro.</p>
+                            <div className="p-6 glass rounded-2xl border-emerald-500/20 italic text-emerald-400 font-medium">"Não é sobre treinar pesado, é sobre ser constante."</div>
+                        </div>
+                        <div className="lg:w-1/2 w-full h-[350px] glass p-6 rounded-3xl">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <LineChart data={data}>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+                                    <XAxis dataKey="day" stroke="#64748b" />
+                                    <YAxis stroke="#64748b" />
+                                    <Tooltip contentStyle={{ backgroundColor: '#0f172a', border: 'none', borderRadius: '8px' }} />
+                                    <ReferenceLine x={66} stroke="#10b981" label={{ value: 'Hábito Selado', fill: '#10b981' }} />
+                                    <Line type="monotone" dataKey="automaticity" stroke="#10b981" strokeWidth={4} dot={{ r: 6 }} />
+                                </LineChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const OfferDetails = () => (
+            <section id="offer" className="py-24 bg-slate-900/50">
+                <div className="container mx-auto px-6 max-w-4xl">
+                    <div className="glass rounded-[3rem] overflow-hidden border-2 border-emerald-500/30">
+                        <div className="gradient-bg py-10 px-8 text-center text-slate-950">
+                            <h2 className="text-4xl font-black mb-2">ACESSO IMEDIATO</h2>
+                            <p className="font-bold uppercase text-sm">Tudo o que você precisa para nunca mais parar</p>
+                        </div>
+                        <div className="p-10 text-center">
+                            <ul className="text-left space-y-4 mb-10 max-w-md mx-auto">
+                                <li className="flex items-center gap-3 text-lg font-medium">✅ Protocolo Passo a Passo</li>
+                                <li className="flex items-center gap-3 text-lg font-medium">✅ Checklist de Consistência</li>
+                                <li className="flex items-center gap-3 text-lg font-medium">✅ Guia Antifragilidade</li>
+                                <li className="flex items-center gap-3 text-lg font-medium">✅ Acesso Vitalício</li>
+                            </ul>
+                            <div className="mb-8">
+                                <span className="text-slate-500 line-through text-xl block">De R$ 99,90</span>
+                                <span className="text-6xl md:text-8xl font-black gradient-text">R$ 9,90</span>
+                            </div>
+                            <button onClick={() => window.location.href = CHECKOUT_URL} className="w-full py-6 gradient-bg text-slate-950 font-black text-2xl rounded-2xl hover:scale-105 transition-all">GARANTIR MEU ACESSO</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const StickyCTA = () => {
+            const [visible, setVisible] = useState(false);
+            useEffect(() => {
+                const handle = () => setVisible(window.scrollY > 800);
+                window.addEventListener('scroll', handle);
+                return () => window.removeEventListener('scroll', handle);
+            }, []);
+            if (!visible) return null;
+            return (
+                <div className="fixed bottom-0 left-0 w-full z-50 px-4 pb-8 flex justify-center pointer-events-none">
+                    <button onClick={() => window.location.href = CHECKOUT_URL} className="pointer-events-auto w-full max-w-2xl py-6 md:py-8 gradient-bg text-slate-950 font-black rounded-2xl shadow-2xl flex items-center justify-center gap-4 animate-bounce">
+                        <span className="text-xl md:text-3xl uppercase">QUERO MEU ACESSO - R$ 9,90</span>
+                    </button>
+                </div>
+            );
+        };
+
+        const App = () => (
+            <div className="min-h-screen bg-slate-950">
+                <Hero />
+                <ScienceSection />
+                <OfferDetails />
+                <footer className="py-20 text-center border-t border-slate-900 text-slate-600 text-sm">
+                    <p className="mb-4">&copy; {new Date().getFullYear()} Método 66 Dias - Todos os direitos reservados.</p>
+                    <p className="max-w-2xl mx-auto px-6">Este site não faz parte do Facebook ou do Google. Os resultados variam de pessoa para pessoa.</p>
+                </footer>
+                <StickyCTA />
+            </div>
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
 </html>
