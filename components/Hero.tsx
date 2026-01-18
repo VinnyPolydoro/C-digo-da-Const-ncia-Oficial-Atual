@@ -2,8 +2,8 @@
 import React from 'react';
 
 const Hero: React.FC = () => {
-  const scrollToOffer = () => {
-    document.getElementById('offer')?.scrollIntoView({ behavior: 'smooth' });
+  const handlePurchase = () => {
+    window.location.href = 'https://pay.kiwify.com.br/yGLcOtO';
   };
 
   return (
@@ -30,10 +30,10 @@ const Hero: React.FC = () => {
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button 
-            onClick={scrollToOffer}
+            onClick={handlePurchase}
             className="w-full sm:w-auto px-10 py-5 gradient-bg text-slate-950 font-bold text-lg rounded-xl hover:scale-105 transition-transform shadow-2xl shadow-emerald-500/20 active:scale-95"
           >
-            QUERO SER CONSISTENTE AGORA
+            QUERO MEU ACESSO AGORA
           </button>
           <div className="flex items-center gap-2 text-slate-400 text-sm">
             <span className="flex">
@@ -44,11 +44,6 @@ const Hero: React.FC = () => {
             <span>+15.000 vidas transformadas</span>
           </div>
         </div>
-      </div>
-      
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-        <svg className="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
       </div>
     </section>
   );
