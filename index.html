@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Método 66 Dias - Consistência na Academia</title>
     
-    <!-- Scripts Essenciais -->
+    <!-- Scripts Essenciais (Carregados antes de tudo) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/recharts/umd/Recharts.js"></script>
     
-    <!-- Fontes de Alta Conversão -->
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
@@ -27,8 +27,8 @@
             font-family: 'Inter', sans-serif;
             background-color: #020617;
             color: #f8fafc;
+            margin: 0;
             scroll-behavior: smooth;
-            overflow-x: hidden;
         }
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
         
@@ -50,16 +50,22 @@
         }
 
         .btn-shadow {
-            shadow-color: rgba(16, 185, 129, 0.4);
-            box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 20px 50px -10px rgba(16, 185, 129, 0.5);
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        /* Loading state para evitar tela preta inicial */
+        #root:empty::before {
+            content: 'Carregando Método 66 Dias...';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #10b981;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
-        .animate-float { animation: float 4s ease-in-out infinite; }
     </style>
 <script type="importmap">
 {
@@ -76,8 +82,12 @@
     <div id="root"></div>
 
     <script type="text/babel">
+        // Acessando as bibliotecas via global window (mais seguro em hospedagens simples)
         const { useState, useEffect } = React;
-        const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } = Recharts;
+        const { 
+            LineChart, Line, XAxis, YAxis, CartesianGrid, 
+            Tooltip, ResponsiveContainer, ReferenceLine 
+        } = window.Recharts;
 
         const CHECKOUT_URL = "https://pay.kiwify.com.br/yGLcOtO";
 
@@ -96,10 +106,10 @@
                 
                 <div className="container mx-auto px-6 relative z-10 text-center">
                     <div className="inline-block px-5 py-2 mb-8 text-xs font-bold tracking-widest text-emerald-400 uppercase glass rounded-full border border-emerald-500/20">
-                        ⚡️ APROVEITE O PREÇO DE LANÇAMENTO
+                        ⚡️ MÉTODO CIENTIFICAMENTE COMPROVADO
                     </div>
                     
-                    <h1 className="text-5xl md:text-7xl lg:text-9xl font-black mb-8 leading-[0.9] tracking-tighter">
+                    <h1 className="text-5xl md:text-7xl lg:text-9xl font-black mb-8 leading-[0.9] tracking-tighter uppercase">
                         NUNCA MAIS <br/><span className="gradient-text italic">DESISTA</span> DA <br/>ACADEMIA.
                     </h1>
                     
@@ -107,27 +117,48 @@
                         O sistema definitivo para automatizar seu treino em 66 dias, eliminando a preguiça e a falta de motivação para sempre.
                     </p>
                     
-                    <div className="flex flex-col items-center gap-6">
-                        <button 
-                            onClick={() => window.location.href = CHECKOUT_URL} 
-                            className="group relative px-12 py-6 gradient-bg text-slate-950 font-black text-2xl rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 btn-shadow"
-                        >
-                            <span className="relative z-10">QUERO MEU ACESSO AGORA</span>
-                            <div className="absolute inset-0 rounded-2xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        </button>
-                        
-                        <div className="flex items-center gap-4 text-slate-500 text-sm font-medium">
-                            <div className="flex -space-x-2">
-                                {[1,2,3].map(i => (
-                                    <div key={i} className="w-8 h-8 rounded-full border-2 border-slate-950 bg-slate-800 flex items-center justify-center text-[10px]">👤</div>
-                                ))}
-                            </div>
-                            <span>+15.420 alunos consistentes</span>
+                    <button 
+                        onClick={() => window.location.href = CHECKOUT_URL} 
+                        className="group relative px-12 py-6 gradient-bg text-slate-950 font-black text-2xl rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 btn-shadow"
+                    >
+                        QUERO MEU ACESSO AGORA
+                    </button>
+                    
+                    <div className="mt-8 flex items-center justify-center gap-4 text-slate-500 text-sm">
+                        <div className="flex -space-x-2">
+                            {[1,2,3].map(i => (
+                                <div key={i} className="w-8 h-8 rounded-full border-2 border-slate-950 bg-slate-800 flex items-center justify-center text-[10px]">👤</div>
+                            ))}
                         </div>
+                        <span>+15.420 pessoas usando o método</span>
                     </div>
                 </div>
             </section>
         );
+
+        const PainPoints = () => {
+            const pains = [
+                { title: "Ciclo da Desistência", desc: "Você começa segunda-feira motivado, mas na quinta já desistiu.", icon: "🔄" },
+                { title: "Escravo da Motivação", desc: "Se o dia foi ruim ou está chovendo, você não vai treinar.", icon: "⛓️" },
+                { title: "Sensação de Fracasso", desc: "Olha no espelho e sente que nunca vai ter o corpo que deseja.", icon: "📉" }
+            ];
+            return (
+                <section className="py-24 bg-slate-900/40">
+                    <div className="container mx-auto px-6">
+                        <h2 className="text-3xl md:text-5xl font-black mb-16 text-center uppercase tracking-tighter">POR QUE VOCÊ <span className="text-red-500 italic">FALHA?</span></h2>
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {pains.map((p, i) => (
+                                <div key={i} className="glass p-8 rounded-3xl border-slate-800 hover:border-emerald-500/30 transition-all group">
+                                    <div className="text-5xl mb-6 group-hover:scale-110 transition-transform">{p.icon}</div>
+                                    <h3 className="text-2xl font-bold mb-4 uppercase">{p.title}</h3>
+                                    <p className="text-slate-400 leading-relaxed font-light">{p.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
 
         const Science = () => {
             const data = [
@@ -139,30 +170,25 @@
                     <div className="container mx-auto px-6">
                         <div className="grid lg:grid-cols-2 gap-20 items-center">
                             <div>
-                                <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">POR QUE <span className="text-emerald-500 italic">66 DIAS?</span></h2>
+                                <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter uppercase leading-tight">A CIÊNCIA DOS <br/><span className="text-emerald-500 italic">66 DIAS</span></h2>
                                 <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                                    Diferente da crença popular de 21 dias, a ciência moderna (University College London) prova que o cérebro humano precisa de **66 dias** para selar um novo hábito de forma inabalável.
+                                    Diferente da crença popular de 21 dias, a University College London prova que o cérebro precisa de **66 dias** para selar um novo hábito de forma inabalável.
                                 </p>
                                 <div className="space-y-4">
-                                    {[
-                                        "Fase 1: Destruição do sedentarismo",
-                                        "Fase 2: Instalação da nova rotina",
-                                        "Fase 3: Integração com sua identidade"
-                                    ].map((text, i) => (
-                                        <div key={i} className="flex items-center gap-3 font-bold text-slate-200">
-                                            <div className="w-6 h-6 rounded-full gradient-bg flex items-center justify-center text-slate-950 text-xs">✓</div>
+                                    {["Destruição do sedentarismo", "Instalação da nova rotina", "Integração com sua identidade"].map((text, i) => (
+                                        <div key={i} className="flex items-center gap-3 font-bold text-slate-200 uppercase text-sm">
+                                            <div className="w-6 h-6 rounded-full gradient-bg flex items-center justify-center text-slate-950 text-[10px] font-black italic">✓</div>
                                             {text}
                                         </div>
                                     ))}
                                 </div>
                             </div>
-                            <div className="h-[400px] glass p-8 rounded-[2.5rem] relative group">
-                                <div className="absolute top-4 left-1/2 -translate-x-1/2 text-[10px] font-bold text-slate-600 uppercase tracking-widest">Gráfico de Automaticidade</div>
+                            <div className="h-[400px] glass p-8 rounded-[2.5rem] relative">
                                 <ResponsiveContainer width="100%" height="100%">
                                     <LineChart data={data}>
                                         <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                                        <XAxis dataKey="d" stroke="#475569" hide />
-                                        <YAxis stroke="#475569" hide />
+                                        <XAxis dataKey="d" hide />
+                                        <YAxis hide />
                                         <ReferenceLine x={66} stroke="#10b981" strokeDasharray="5 5" />
                                         <Line type="monotone" dataKey="v" stroke="#10b981" strokeWidth={5} dot={{ r: 8, fill: '#10b981', stroke: '#020617', strokeWidth: 3 }} />
                                     </LineChart>
@@ -176,54 +202,52 @@
         };
 
         const Offer = () => (
-            <section id="offer" className="py-32 relative overflow-hidden">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-emerald-500/10 blur-[120px] rounded-full -z-10"></div>
+            <section id="offer" className="py-32 relative">
                 <div className="container mx-auto px-6 max-w-4xl">
                     <div className="glass rounded-[4rem] border-2 border-emerald-500/20 overflow-hidden shadow-2xl">
                         <div className="gradient-bg py-12 text-center text-slate-950">
-                            <h2 className="text-4xl md:text-5xl font-black tracking-tighter">OFERTA DE LANÇAMENTO</h2>
-                            <p className="font-bold opacity-70">Acesso imediato ao Método 66 Dias</p>
+                            <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase leading-none">OFERTA DE <br/>LANÇAMENTO</h2>
+                            <p className="font-bold opacity-70 mt-2">Acesso imediato e vitalício por valor simbólico</p>
                         </div>
-                        <div className="p-10 md:p-20">
-                            <div className="grid gap-6 mb-16">
+                        <div className="p-10 md:p-20 text-center">
+                            <div className="grid gap-4 mb-12 text-left max-w-md mx-auto">
                                 {[
-                                    "Protocolo 66 Dias (E-book Completo)",
-                                    "Checklist Diário de Consistência",
-                                    "Guia de Gestão de Motivação",
-                                    "Protocolo Antifragilidade (Anti-recaída)",
-                                    "BÔNUS: Planner de Treino Minimalista"
+                                    "E-book Método 66 Dias Completo", 
+                                    "Checklist Diário de Hábito", 
+                                    "Guia de Gestão de Motivação", 
+                                    "Protocolo Antifragilidade"
                                 ].map((item, i) => (
-                                    <div key={i} className="flex items-center gap-4 text-xl font-medium">
-                                        <span className="text-2xl">🔥</span>
+                                    <div key={i} className="flex items-center gap-4 text-lg font-medium">
+                                        <span className="text-emerald-500 text-xl">⚡️</span>
                                         <span className="text-slate-200">{item}</span>
                                     </div>
                                 ))}
                             </div>
                             
-                            <div className="text-center">
-                                <p className="text-slate-500 line-through text-2xl mb-2 font-bold">De R$ 97,00</p>
-                                <div className="flex items-center justify-center gap-3 mb-12">
+                            <div className="mb-12">
+                                <p className="text-slate-500 line-through text-2xl font-bold mb-2">De R$ 97,00</p>
+                                <div className="flex items-center justify-center gap-3">
                                     <span className="text-3xl font-bold text-emerald-400">Por apenas</span>
                                     <span className="text-8xl md:text-9xl font-black gradient-text tracking-tighter leading-none">9,90</span>
                                 </div>
-                                
-                                <button 
-                                    onClick={() => window.location.href = CHECKOUT_URL} 
-                                    className="w-full py-8 gradient-bg text-slate-950 font-black text-3xl rounded-[2rem] hover:scale-105 transition-all active:scale-95 btn-shadow"
-                                >
-                                    GARANTIR MEU ACESSO
-                                </button>
-                                
-                                <div className="mt-8 flex flex-col items-center gap-4">
-                                    <div className="flex gap-4 opacity-40 grayscale">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" className="h-5" alt="Paypal" />
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" className="h-3" alt="Visa" />
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" className="h-6" alt="Mastercard" />
-                                    </div>
-                                    <p className="text-slate-500 text-sm font-bold flex items-center gap-2 uppercase tracking-widest">
-                                        🔒 Compra 100% Segura • Acesso Vitalício
-                                    </p>
+                            </div>
+                            
+                            <button 
+                                onClick={() => window.location.href = CHECKOUT_URL} 
+                                className="w-full py-8 gradient-bg text-slate-950 font-black text-3xl rounded-[2rem] hover:scale-105 transition-all active:scale-95 btn-shadow uppercase tracking-tighter"
+                            >
+                                GARANTIR MEU ACESSO
+                            </button>
+                            
+                            <div className="mt-10 flex flex-col items-center gap-4">
+                                <div className="flex gap-4 opacity-40 grayscale h-6">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="Paypal" />
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" />
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" />
                                 </div>
+                                <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">
+                                    🔒 Compra Segura • Entrega Imediata no E-mail
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -247,8 +271,8 @@
                         onClick={() => window.location.href = CHECKOUT_URL} 
                         className="pointer-events-auto w-full max-w-xl py-6 gradient-bg text-slate-950 font-black rounded-3xl shadow-3xl flex items-center justify-center gap-4 group"
                     >
-                        <span className="text-xl md:text-2xl uppercase tracking-tighter">GARANTIR ACESSO - R$ 9,90</span>
-                        <div className="absolute inset-0 rounded-3xl bg-white/20 animate-ping -z-10"></div>
+                        <span className="text-xl md:text-2xl uppercase tracking-tighter">QUERO MEU ACESSO - R$ 9,90</span>
+                        <div className="absolute inset-0 rounded-3xl bg-white/20 animate-ping -z-10 group-hover:hidden"></div>
                     </button>
                 </div>
             );
@@ -257,11 +281,12 @@
         const App = () => (
             <div className="min-h-screen">
                 <Hero />
+                <PainPoints />
                 <Science />
                 <Offer />
-                <footer className="py-20 text-center text-slate-700 text-xs border-t border-slate-900 px-6">
-                    <p className="max-w-xl mx-auto mb-4">
-                        Este site não é afiliado ao Facebook, Google ou Instagram. Os resultados podem variar de acordo com o esforço individual.
+                <footer className="py-20 text-center text-slate-700 text-[10px] border-t border-slate-900 px-6 uppercase tracking-widest font-bold">
+                    <p className="max-w-xl mx-auto mb-4 italic">
+                        Este site não é afiliado ao Facebook ou Google. Todos os resultados dependem da dedicação do aluno.
                     </p>
                     <p>&copy; {new Date().getFullYear()} Método 66 Dias - Todos os direitos reservados.</p>
                 </footer>
@@ -269,6 +294,7 @@
             </div>
         );
 
+        // Renderização Final
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
