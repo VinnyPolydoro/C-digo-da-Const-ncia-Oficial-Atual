@@ -7,16 +7,15 @@ import {
 } from 'recharts';
 import { 
   CheckCircle2, Star, ShieldCheck, Flame, 
-  Shield, Gem, Trophy 
+  Shield, Gem, Trophy, Target, Zap, Clock
 } from 'lucide-react';
 
-// Configuração Global
 const CHECKOUT_URL = "https://pay.kiwify.com.br/yGLcOtO";
 
 const PHASES = [
-  { id: 1, title: "A Fase do Caos", days: "DIAS 1 - 22", desc: "A etapa de destruição. Onde você quebra os padrões antigos de sedentarismo.", icon: <Flame className="w-8 h-8" /> },
-  { id: 2, title: "A Fase da Resistência", days: "DIAS 23 - 44", desc: "A etapa de construção. Sua nova identidade de quem treina começa a surgir.", icon: <Shield className="w-8 h-8" /> },
-  { id: 3, title: "A Fase da Selagem", days: "DIAS 45 - 66", desc: "A etapa final. O hábito se torna automático e faz parte de quem você é.", icon: <Gem className="w-8 h-8" /> }
+  { id: 1, title: "A Fase do Caos", days: "DIAS 1 - 22", desc: "A etapa de destruição. Onde você quebra os padrões antigos de sedentarismo e vence a inércia.", icon: <Flame className="w-8 h-8" /> },
+  { id: 2, title: "A Fase da Resistência", days: "DIAS 23 - 44", desc: "A etapa de construção. Sua nova identidade de quem treina começa a surgir e o corpo se adapta.", icon: <Shield className="w-8 h-8" /> },
+  { id: 3, title: "A Fase da Selagem", days: "DIAS 45 - 66", desc: "A etapa final. O hábito se torna automático e faz parte de quem você é. Agora é lifestyle.", icon: <Gem className="w-8 h-8" /> }
 ];
 
 const CHART_DATA = [
@@ -25,9 +24,9 @@ const CHART_DATA = [
 ];
 
 const TESTIMONIALS = [
-  { id: 1, name: "Ricardo Santos", result: "-14KG EM 70 DIAS", comment: "Entendi finalmente como o hábito funciona. Hoje o treino é automático.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200" },
-  { id: 2, name: "Beatriz Helena", result: "FOCO TOTAL", comment: "Pela primeira vez não dependo de estar animada para ir treinar.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" },
-  { id: 3, name: "André Luiz", result: "CONSTÂNCIA", comment: "O sistema de fases me ajudou a não desistir nos dias difíceis.", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200" }
+  { id: 1, name: "Ricardo Santos", result: "-14KG EM 70 DIAS", comment: "Entendi finalmente como o hábito funciona. Hoje o treino é automático e não sofro mais.", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200" },
+  { id: 2, name: "Beatriz Helena", result: "FOCO TOTAL", comment: "Pela primeira vez não dependo de estar animada para ir treinar. O método mudou minha cabeça.", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" },
+  { id: 3, name: "André Luiz", result: "CONSTÂNCIA", comment: "O sistema de fases me ajudou a não desistir nos dias difíceis. Indico para todo mundo.", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200" }
 ];
 
 const Hero = () => (
@@ -44,18 +43,12 @@ const Hero = () => (
         NUNCA MAIS <span className="gradient-text italic">DESISTA</span> DA ACADEMIA.
       </h1>
       <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-        Transforme o treino em um hábito automático em 66 dias e conquiste o corpo que você sempre quis.
+        Transforme o treino em um hábito automático em 66 dias e conquiste o corpo que você sempre quis com o protocolo usado por atletas de elite.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-        <a href={CHECKOUT_URL} className="w-full sm:w-auto px-12 py-6 gradient-bg text-slate-950 font-black text-2xl rounded-2xl hover:scale-105 transition-transform shadow-2xl shadow-emerald-500/30">
+        <a href={CHECKOUT_URL} className="w-full sm:w-auto px-12 py-6 gradient-bg text-slate-950 font-black text-2xl rounded-2xl hover:scale-105 transition-transform shadow-2xl shadow-emerald-500/30 uppercase tracking-tighter italic">
           QUERO MEU ACESSO AGORA
         </a>
-        <div className="flex items-center gap-2 text-slate-400 text-sm font-bold uppercase tracking-wider">
-          <div className="flex text-yellow-500">
-            {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
-          </div>
-          <span>+15.000 Vidas</span>
-        </div>
       </div>
     </div>
   </section>
@@ -67,12 +60,12 @@ const PainSection = () => (
       <h2 className="text-3xl md:text-5xl font-black mb-16 text-center uppercase tracking-tighter italic text-red-500">POR QUE VOCÊ SEMPRE FALHA?</h2>
       <div className="grid md:grid-cols-3 gap-8">
         {[
-          { icon: "🔄", title: "Ciclo da Desistência", desc: "Você começa na segunda animado e para na quinta exausto." },
-          { icon: "⛓️", title: "Escravo da Emoção", desc: "Se o dia foi ruim ou está chovendo, você simplesmente não vai." },
-          { icon: "📉", title: "Falta de Identidade", desc: "Você se vê como alguém que tenta, não como alguém que é." }
+          { icon: <Clock className="w-10 h-10" />, title: "Ciclo da Desistência", desc: "Você começa na segunda animado e para na quinta exausto. O ciclo se repete todo mês." },
+          { icon: <Zap className="w-10 h-10" />, title: "Escravo da Emoção", desc: "Se o dia foi ruim ou está chovendo, você simplesmente não vai. Você é refém da motivação." },
+          { icon: <Target className="w-10 h-10" />, title: "Falta de Identidade", desc: "Você se vê como alguém que tenta, não como alguém que é. O hábito não está no seu DNA." }
         ].map((item, i) => (
           <div key={i} className="glass p-10 rounded-3xl border-slate-800 hover:border-emerald-500/30 transition-all group">
-            <div className="text-5xl mb-6 group-hover:scale-110 transition-transform">{item.icon}</div>
+            <div className="text-emerald-500 mb-6 group-hover:scale-110 transition-transform">{item.icon}</div>
             <h3 className="text-2xl font-bold mb-4 uppercase leading-none">{item.title}</h3>
             <p className="text-slate-400 font-light leading-relaxed">{item.desc}</p>
           </div>
@@ -88,9 +81,9 @@ const ScienceSection = () => (
       <div className="lg:w-1/2">
         <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter uppercase leading-none">A CIÊNCIA DOS <span className="text-emerald-500 italic">66 DIAS</span></h2>
         <div className="space-y-6 text-slate-400 text-lg">
-          <p>Estudos da <strong>University College London</strong> provaram que o tempo médio para selar um hábito complexo é de 66 dias.</p>
+          <p>Diferente do mito dos "21 dias", estudos da <strong>University College London</strong> provaram que o tempo médio para selar um hábito complexo é de 66 dias.</p>
           <div className="p-6 glass rounded-2xl border-emerald-500/20 text-emerald-400 italic font-bold">
-            "Não é força de vontade passageira, é design de comportamento biológico."
+            "Não é força de vontade passageira, é design de comportamento biológico aplicado ao treino."
           </div>
         </div>
       </div>
@@ -108,6 +101,7 @@ const ScienceSection = () => (
             <Line type="monotone" dataKey="auto" stroke="#10b981" strokeWidth={5} dot={{ r: 6, fill: '#10b981' }} />
           </LineChart>
         </ResponsiveContainer>
+        <p className="text-center text-slate-500 text-xs mt-4 uppercase font-bold tracking-widest">Nível de Automaticidade vs. Dias</p>
       </div>
     </div>
   </section>
@@ -168,7 +162,7 @@ const OfferDetails = () => (
           <ul className="space-y-5 mb-12">
             {[
               "E-book Mestre: Método 66 Dias", 
-              "Planner Digital de Hábitos", 
+              "Planner Digital de Hábitos (Editável)", 
               "Checklist Diário de Evolução", 
               "Manual da Preguiça Zero", 
               "Protocolo Antifragilidade"
@@ -184,11 +178,11 @@ const OfferDetails = () => (
               <span className="text-2xl font-bold text-emerald-400 italic">Por apenas</span>
               <span className="text-8xl font-black gradient-text">9,90</span>
             </div>
-            <a href={CHECKOUT_URL} className="block w-full py-8 gradient-bg text-slate-950 font-black text-3xl rounded-3xl hover:scale-[1.02] transition-transform shadow-2xl shadow-emerald-500/30 uppercase tracking-tighter">
+            <a href={CHECKOUT_URL} className="block w-full py-8 gradient-bg text-slate-950 font-black text-3xl rounded-3xl hover:scale-[1.02] transition-transform shadow-2xl shadow-emerald-500/30 uppercase tracking-tighter italic">
               QUERO MEU ACESSO AGORA
             </a>
             <p className="mt-6 text-slate-500 text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2">
-              <ShieldCheck size={16} /> Compra 100% Segura • Risco Zero
+              <ShieldCheck size={16} /> Compra 100% Segura • Garantia Total
             </p>
           </div>
         </div>
@@ -200,9 +194,7 @@ const OfferDetails = () => (
 const StickyCTA = () => {
   const [show, setShow] = useState(false);
   useEffect(() => {
-    const handleScroll = () => {
-      setShow(window.scrollY > 800);
-    };
+    const handleScroll = () => setShow(window.scrollY > 800);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -211,7 +203,7 @@ const StickyCTA = () => {
   
   return (
     <div className="fixed bottom-8 left-0 w-full z-50 px-4 flex justify-center animate-bounce-subtle">
-      <a href={CHECKOUT_URL} className="w-full max-w-2xl py-6 gradient-bg text-slate-950 font-black text-2xl rounded-2xl shadow-3xl text-center uppercase tracking-tighter italic">
+      <a href={CHECKOUT_URL} className="w-full max-w-2xl py-6 gradient-bg text-slate-950 font-black text-2xl rounded-2xl shadow-3xl text-center uppercase tracking-tighter italic border-2 border-slate-950">
         GARANTIR ACESSO - R$ 9,90
       </a>
     </div>
@@ -233,7 +225,7 @@ const App = () => {
           <Trophy className="w-32 h-32 text-emerald-500 shrink-0 filter drop-shadow-[0_0_20px_rgba(16,185,129,0.4)]" />
           <div className="text-center md:text-left">
             <h2 className="text-4xl font-black mb-6 uppercase tracking-tighter leading-none">RISCO ZERO POR <span className="text-emerald-500 italic">7 DIAS</span></h2>
-            <p className="text-slate-400 text-lg leading-relaxed">Se em 7 dias você sentir que o método não é para você, eu devolvo 100% do seu dinheiro. Sem perguntas, sem estresse.</p>
+            <p className="text-slate-400 text-lg leading-relaxed">Se em 7 dias você sentir que o método não é para você, eu devolvo 100% do seu dinheiro. Sem perguntas, sem estresse. O risco é todo meu.</p>
           </div>
         </div>
       </section>
@@ -241,7 +233,7 @@ const App = () => {
       <footer className="py-20 text-center border-t border-slate-900 px-6">
         <div className="text-2xl font-black gradient-text mb-8 tracking-tighter italic">MÉTODO 66 DIAS</div>
         <div className="flex flex-wrap justify-center gap-8 mb-10 text-slate-500 text-xs font-bold uppercase tracking-widest">
-          <a href="#" className="hover:text-emerald-400">Termos</a>
+          <a href="#" className="hover:text-emerald-400">Termos de Uso</a>
           <a href="#" className="hover:text-emerald-400">Privacidade</a>
           <a href="#" className="hover:text-emerald-400">Suporte</a>
         </div>
