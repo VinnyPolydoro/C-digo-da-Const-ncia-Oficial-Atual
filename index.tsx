@@ -151,7 +151,7 @@ const SocialProof = () => (
 );
 
 const OfferDetails = () => (
-  <section className="py-24 bg-slate-900/50">
+  <section className="py-24 bg-slate-900/50" id="oferta">
     <div className="container mx-auto px-6 max-w-4xl">
       <div className="glass rounded-[3rem] overflow-hidden border-2 border-emerald-500/20 shadow-2xl">
         <div className="gradient-bg py-12 text-center">
@@ -161,11 +161,9 @@ const OfferDetails = () => (
         <div className="p-10 md:p-16">
           <ul className="space-y-5 mb-12">
             {[
-              "E-book Mestre: Método 66 Dias", 
-              "Planner Digital de Hábitos (Editável)", 
+              "E-book: Método 66 Dias", 
               "Checklist Diário de Evolução", 
-              "Manual da Preguiça Zero", 
-              "Protocolo Antifragilidade"
+              "Manual da Preguiça Zero"
             ].map((f, i) => (
               <li key={i} className="flex items-center gap-4 text-xl font-bold">
                 <CheckCircle2 className="text-emerald-500 shrink-0" /> {f}
@@ -226,6 +224,11 @@ const App = () => {
           <div className="text-center md:text-left">
             <h2 className="text-4xl font-black mb-6 uppercase tracking-tighter leading-none">RISCO ZERO POR <span className="text-emerald-500 italic">7 DIAS</span></h2>
             <p className="text-slate-400 text-lg leading-relaxed">Se em 7 dias você sentir que o método não é para você, eu devolvo 100% do seu dinheiro. Sem perguntas, sem estresse. O risco é todo meu.</p>
+            <div className="mt-8">
+               <a href={CHECKOUT_URL} className="inline-block px-8 py-4 gradient-bg text-slate-950 font-black text-xl rounded-xl hover:scale-105 transition-transform uppercase italic tracking-tighter">
+                  Quero meu acesso
+               </a>
+            </div>
           </div>
         </div>
       </section>
